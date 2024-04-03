@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: createBookTable
+      author: admin
+#      ignore: true
+      changes:
+        - sql:
+            dbms: postgresql
+            endDelimiter: ';'
+            splitStatements: true
+            sql: |
+              CREATE TYPE proposal_status AS ENUM ('PENDING', 'APPROVED', 'REJECTED');

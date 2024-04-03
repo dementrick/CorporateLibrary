@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: import_review_data
+      author: admin
+#      ignore: true
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: book_id
+                  name: book_id
+              - column:
+                  header: user_id
+                  name: user_id
+              - column:
+                  header: rating
+                  name: rating
+            tableName: review
+            file: "db/changelog/static/ratings.csv"
+  - changeSet:
+      id: insert_user_id_data
+      author: admin
+#      ignore: true
+      changes:
+        - sql:
+            dbms: postgresql
+            endDelimiter: ';'
+            splitStatements: true
+            sql: |
+              INSERT INTO "user" (user_id)
+              SELECT DISTINCT user_id
+              FROM "review";
+              UPDATE "user"
+              SET role = 'ROLE_USER'

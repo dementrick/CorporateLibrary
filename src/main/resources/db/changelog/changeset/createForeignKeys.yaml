@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: createForeignKeys
+      author: admin
+#      ignore: true
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: proposal
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: user_id
+            constraintName: fk_proposal_user_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: review
+            baseColumnNames: book_id
+            referencedTableName: book
+            referencedColumnNames: book_id
+            constraintName: fk_review_book_id
+            onDelete: CASCADE
+        - addForeignKeyConstraint:
+            baseTableName: review
+            baseColumnNames: user_id
+            referencedTableName: user
+            referencedColumnNames: user_id
+            constraintName: fk_review_user_id
+            onDelete: CASCADE

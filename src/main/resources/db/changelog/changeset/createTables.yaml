@@ -1,0 +1,148 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTables
+      author: admin
+#      ignore: true
+      changes:
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: image_url
+                  type: TEXT
+              - column:
+                  name: isbn
+                  type: VARCHAR(20)
+              - column:
+                  name: isbn13
+                  type: DOUBLE
+              - column:
+                  name: name
+                  type: VARCHAR(1023)
+              - column:
+                  name: original_publication_year
+                  type: INTEGER
+              - column:
+                  name: original_title
+                  type: VARCHAR(511)
+              - column:
+                  name: small_image_url
+                  type: TEXT
+              - column:
+                  name: title
+                  type: VARCHAR(511)
+              - column:
+                  name: language_code
+                  type: VARCHAR(10)
+              - column:
+                  name: ratings_count
+                  type: INTEGER
+              - column:
+                  name: average_rating
+                  type: DOUBLE
+        - createTable:
+            tableName: review
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rating
+                  type: INTEGER
+              - column:
+                  name: comment
+                  type: TEXT
+        - createTable:
+            tableName: proposal
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment
+                  type: VARCHAR(255)
+              - column:
+                  name: status
+                  type: proposal_status
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: role
+                  type: VARCHAR(31)
+        - createTable:
+            tableName: tradeTable
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+

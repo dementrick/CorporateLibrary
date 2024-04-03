@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  postgres:
+    container_name: postgres_container
+    build: .
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: library

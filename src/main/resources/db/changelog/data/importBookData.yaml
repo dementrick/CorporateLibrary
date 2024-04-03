@@ -1,0 +1,121 @@
+databaseChangeLog:
+  - changeSet:
+      id: import_book_from_csv
+      author: admin
+#      ignore: true
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  header: bookId
+                  name: book_id
+              - column:
+                  header: imageUrl
+                  name: image_url
+              - column:
+                  header: isbn
+                  name: isbn
+              - column:
+                  header: isbn13
+                  name: isbn13
+              - column:
+                  header: authors
+                  name: name
+              - column:
+                  header: originalPublicationYear
+                  name: original_publication_year
+              - column:
+                  header: originalTitle
+                  name: original_title
+              - column:
+                  header: smallImageUrl
+                  name: small_image_url
+              - column:
+                  header: title
+                  name: title
+              - column:
+                  header: languageCode
+                  name: language_code
+              - column:
+                  header: ratingsCount
+                  name: ratings_count
+              - column:
+                  header: averageRating
+                  name: average_rating
+              - column:
+                  header: best_book_id
+                  name: best_book_id
+                  type: skip
+              - column:
+                  header: work_id
+                  name: work_id
+                  type: skip
+              - column:
+                  header: books_count
+                  name: books_count
+                  type: skip
+              - column:
+                  header: work_ratings_count
+                  name: work_ratings_count
+                  type: skip
+              - column:
+                  header: work_text_reviews_count
+                  name: work_text_reviews_count
+                  type: skip
+              - column:
+                  header: ratings_1
+                  name: ratings_1
+                  type: skip
+              - column:
+                  header: ratings_2
+                  name: ratings_2
+                  type: skip
+              - column:
+                  header: ratings_3
+                  name: ratings_3
+                  type: skip
+              - column:
+                  header: ratings_4
+                  name: ratings_4
+                  type: skip
+              - column:
+                  header: ratings_5
+                  name: ratings_5
+                  type: skip
+              - column:
+                  header: image_url
+                  name: image_url
+                  type: skip
+              - column:
+                  header: small_image_url
+                  name: small_image_url
+                  type: skip
+            tableName: book
+            file: "db/changelog/static/work_book_denormalized.csv"
+  - changeSet:
+      id: select
+      author: admin
+#      ignore: true
+      changes:
+        - sql:
+            dbms: postgresql
+            endDelimiter: ';'
+            splitStatements: true
+            sql: |
+              INSERT INTO "tradeTable" (book_id)
+              SELECT DISTINCT book_id
+              FROM "review"
+              WHERE NOT EXISTS (
+              SELECT 1
+              FROM "book"
+              WHERE "book".book_id = "review".book_id
+              );
+        - sql:
+            dbms: postgresql
+            endDelimiter: ';'
+            splitStatements: true
+            sql: |
+              SELECT setval('"book_id_seq"', (SELECT COALESCE(MAX(id), 0) + 1 FROM "book"), false);
+              INSERT INTO "book" (book_id)
+              SELECT book_id
+              FROM "tradeTable";

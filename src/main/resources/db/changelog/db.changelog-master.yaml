@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/createSQLVariable.yaml
+  - include:
+      file: db/changelog/changeset/createTables.yaml
+  - include:
+      file: db/changelog/data/importReviewData.yaml
+  - include:
+      file: db/changelog/data/importBookData.yaml
+  - include:
+      file: db/changelog/changeset/createForeignKeys.yaml
