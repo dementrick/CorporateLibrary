@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.exception;
+package ru.java.springmvcclasswork.exception;
 
 
 import org.springframework.http.HttpStatus;

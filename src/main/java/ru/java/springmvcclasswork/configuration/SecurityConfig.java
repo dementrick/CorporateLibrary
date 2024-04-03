@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.configuration;
+package ru.java.springmvcclasswork.configuration;
 
 
 import org.springframework.context.annotation.Bean;

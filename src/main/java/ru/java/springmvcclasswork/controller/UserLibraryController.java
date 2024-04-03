@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.controller;
+package ru.java.springmvcclasswork.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -7,13 +7,13 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.liga.springmvcclasswork.model.Book;
-import ru.liga.springmvcclasswork.model.Proposal;
-import ru.liga.springmvcclasswork.model.ProposalStatus;
-import ru.liga.springmvcclasswork.model.Review;
-import ru.liga.springmvcclasswork.userService.BookProposalService;
-import ru.liga.springmvcclasswork.userService.BookSearchService;
-import ru.liga.springmvcclasswork.userService.ReviewService;
+import ru.java.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.model.Proposal;
+import ru.java.springmvcclasswork.model.ProposalStatus;
+import ru.java.springmvcclasswork.model.Review;
+import ru.java.springmvcclasswork.userService.BookProposalService;
+import ru.java.springmvcclasswork.userService.BookSearchService;
+import ru.java.springmvcclasswork.userService.ReviewService;
 
 @RestController
 @RequestMapping("/library")

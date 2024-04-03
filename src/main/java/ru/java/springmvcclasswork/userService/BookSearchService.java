@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.adminService;
+package ru.java.springmvcclasswork.userService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -7,22 +7,29 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import ru.liga.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.model.Review;
+import ru.java.springmvcclasswork.repository.ReviewRepository;
+import ru.java.springmvcclasswork.repository.BookRepository;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AdminBookService {
+@Slf4j
+public class BookSearchService {
 
+    private final BookRepository bookRepository;
     private final EntityManager entityManager;
+    private final ReviewRepository reviewRepository;
 
-    // Метод для поиска книг с возможностью фильтрации и сортировки
-    public Page<Book> searchBooks(String titleQuery, Pageable pageable) {
+    // Метод для поиска книг по названию с возможностью фильтрации и сортировки
+    public Page<Book> searchBooksByTitle(String titleQuery, Pageable pageable) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Book> query = criteriaBuilder.createQuery(Book.class);
         Root<Book> root = query.from(Book.class);
@@ -56,6 +63,42 @@ public class AdminBookService {
         typedQuery.setMaxResults(pageable.getPageSize());
         List<Book> result = typedQuery.getResultList();
 
+        return new PageImpl<>(result, pageable, result.size());
+    }
+
+    // Метод для получения подробной информации о книге
+    public Book getBookDetails(Long bookId) {
+        try {
+            return bookRepository.findById(bookId).orElse(null);
+        } catch (Exception e) {
+            log.warn("Книга не найдена " + e.getMessage());
+            return null;
+        }
+    }
+
+    // Метод для получения списка комментариев пользователей по книге
+    public Page<Review> getBookComments(Long bookId, Integer rating, Pageable pageable) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Review> query = criteriaBuilder.createQuery(Review.class);
+        Root<Review> root = query.from(Review.class);
+
+        // Фильтрация рейтингу
+        Predicate bookPredicate = criteriaBuilder.equal(root.get("book").get("id"), bookId);
+        Predicate ratingPredicate = criteriaBuilder.equal(root.get("rating"), rating);
+        query.where(criteriaBuilder.and(bookPredicate, ratingPredicate));
+
+        // Сортировка по рейтингу
+        query.orderBy(criteriaBuilder.asc(root.get("rating")));
+
+        // Создание запроса
+        TypedQuery<Review> typedQuery = entityManager.createQuery(query);
+
+        // Установка параметров страницы
+        typedQuery.setFirstResult((int) pageable.getOffset());
+        typedQuery.setMaxResults(pageable.getPageSize());
+
+        // Получение списка результатов
+        List<Review> result = typedQuery.getResultList();
         return new PageImpl<>(result, pageable, result.size());
     }
 }

@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.model;
+package ru.java.springmvcclasswork.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,22 +7,22 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "proposal")
-public class Proposal {
+@AllArgsConstructor
+@Table(name = "review")
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Version
-    private Integer version;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String title;
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    private Integer rating;
     private String comment;
-    private ProposalStatus status;
 }

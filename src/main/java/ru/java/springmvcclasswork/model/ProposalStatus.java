@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.model;
+package ru.java.springmvcclasswork.model;
 
 public enum ProposalStatus {
     PENDING,

@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.adminService;
+package ru.java.springmvcclasswork.adminService;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.LockModeType;
@@ -7,10 +7,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.liga.springmvcclasswork.exception.ResourceNotFoundException;
-import ru.liga.springmvcclasswork.model.Proposal;
-import ru.liga.springmvcclasswork.model.ProposalStatus;
-import ru.liga.springmvcclasswork.repository.ProposalRepository;
+import ru.java.springmvcclasswork.exception.ResourceNotFoundException;
+import ru.java.springmvcclasswork.model.Proposal;
+import ru.java.springmvcclasswork.model.ProposalStatus;
+import ru.java.springmvcclasswork.repository.ProposalRepository;
 
 @Service
 @RequiredArgsConstructor

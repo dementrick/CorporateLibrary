@@ -1,10 +1,10 @@
-package ru.liga.springmvcclasswork.adminService;
+package ru.java.springmvcclasswork.adminService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.liga.springmvcclasswork.exception.ResourceNotFoundException;
-import ru.liga.springmvcclasswork.model.Review;
-import ru.liga.springmvcclasswork.repository.ReviewRepository;
+import ru.java.springmvcclasswork.exception.ResourceNotFoundException;
+import ru.java.springmvcclasswork.model.Review;
+import ru.java.springmvcclasswork.repository.ReviewRepository;
 
 @Service
 @RequiredArgsConstructor

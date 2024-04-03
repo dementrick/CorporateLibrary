@@ -10,7 +10,7 @@
         <version>3.2.3</version>
     </parent>
 
-    <groupId>ru.liga</groupId>
+    <groupId>ru.java.core</groupId>
     <artifactId>CorporateLibrary</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>

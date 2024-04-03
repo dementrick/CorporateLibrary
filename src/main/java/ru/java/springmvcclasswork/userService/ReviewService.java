@@ -1,14 +1,14 @@
-package ru.liga.springmvcclasswork.userService;
+package ru.java.springmvcclasswork.userService;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.liga.springmvcclasswork.exception.ResourceNotFoundException;
-import ru.liga.springmvcclasswork.model.Book;
-import ru.liga.springmvcclasswork.model.Review;
-import ru.liga.springmvcclasswork.model.User;
-import ru.liga.springmvcclasswork.repository.BookRepository;
-import ru.liga.springmvcclasswork.repository.ReviewRepository;
-import ru.liga.springmvcclasswork.repository.UserRepository;
+import ru.java.springmvcclasswork.exception.ResourceNotFoundException;
+import ru.java.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.model.Review;
+import ru.java.springmvcclasswork.model.User;
+import ru.java.springmvcclasswork.repository.BookRepository;
+import ru.java.springmvcclasswork.repository.ReviewRepository;
+import ru.java.springmvcclasswork.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor

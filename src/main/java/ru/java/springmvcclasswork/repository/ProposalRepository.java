@@ -1,10 +1,10 @@
-package ru.liga.springmvcclasswork.repository;
+package ru.java.springmvcclasswork.repository;
 
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.liga.springmvcclasswork.model.Proposal;
+import ru.java.springmvcclasswork.model.Proposal;
 
 public interface ProposalRepository extends JpaRepository<Proposal, Long> {
 

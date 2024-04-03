@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork;
+package ru.java.springmvcclasswork;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

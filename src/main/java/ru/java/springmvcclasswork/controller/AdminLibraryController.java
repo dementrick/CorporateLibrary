@@ -1,4 +1,4 @@
-package ru.liga.springmvcclasswork.controller;
+package ru.java.springmvcclasswork.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -7,10 +7,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.liga.springmvcclasswork.adminService.AdminBookService;
-import ru.liga.springmvcclasswork.adminService.AdminProposalService;
-import ru.liga.springmvcclasswork.adminService.AdminReviewService;
-import ru.liga.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.model.Book;
+import ru.java.springmvcclasswork.adminService.AdminBookService;
+import ru.java.springmvcclasswork.adminService.AdminProposalService;
+import ru.java.springmvcclasswork.adminService.AdminReviewService;
 
 @RestController
 @RequiredArgsConstructor
